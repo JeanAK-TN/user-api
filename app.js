@@ -13,6 +13,13 @@ function createApp(initialUsers = getInitialUsers()) {
 
   app.use(express.json());
 
+  app.get('/health', (req, res) => {
+    res.status(200).json({
+      status: 'OK',
+      timestamp: new Date().toISOString()
+    });
+  });
+
   app.get('/api/users', (req, res) => {
     res.status(200).json(users);
   });

@@ -37,6 +37,21 @@ npm run build
 
 Le build génère un dossier `dist/` prêt à être archivé comme artifact.
 
+## Docker
+
+```bash
+docker build -t user-api:1.0 .
+docker run -d -p 3000:3000 --name user-api -e NODE_ENV=production user-api:1.0
+```
+
+Vérifications utiles :
+
+```bash
+curl http://localhost:3000/health
+docker inspect --format='{{.State.Health.Status}}' user-api
+docker logs user-api
+```
+
 ## Endpoints
 
 - `GET /api/users` : retourne tous les utilisateurs.

@@ -8,6 +8,14 @@ describe('User API', () => {
     app = createApp(getInitialUsers());
   });
 
+  test('GET /health should return application health', async () => {
+    const response = await request(app).get('/health');
+
+    expect(response.status).toBe(200);
+    expect(response.body.status).toBe('OK');
+    expect(response.body).toHaveProperty('timestamp');
+  });
+
   test('GET /api/users should return all users', async () => {
     const response = await request(app).get('/api/users');
 
